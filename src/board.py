@@ -29,4 +29,18 @@ class Board:
                 return self.grid[a]
         return None
 
+    def __str__(self) -> str:
+        # Display the player mark if present, otherwise show the index number (0-8)
+        display_cells = [
+            self.grid[i] if self.grid[i] is not None else str(i)
+            for i in range(9)
+        ]
+        
+        rows = [
+            f" {display_cells[0]} | {display_cells[1]} | {display_cells[2]} ",
+            f" {display_cells[3]} | {display_cells[4]} | {display_cells[5]} ",
+            f" {display_cells[6]} | {display_cells[7]} | {display_cells[8]} "
+        ]
+        return "\n---+---+---\n".join(rows)
+
     

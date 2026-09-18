@@ -53,3 +53,20 @@ def test_diagonal_win():
     for pos in [0, 4, 8]:
         board.make_move(pos, "X")
     assert board.check_winner() == "X"
+
+### Start of UI Development, the project is changing from tests and class changes in each
+# commit to: Tests, Class Changes and A sharable Demo.
+
+def test_board_string_representation_shows_positions_and_marks():
+    board = Board()
+    board.make_move(0, "X")
+    board.make_move(4, "O")
+
+    expected_output = (
+        " X | 1 | 2 \n"
+        "---+---+---\n"
+        " 3 | O | 5 \n"
+        "---+---+---\n"
+        " 6 | 7 | 8 "
+    )
+    assert str(board) == expected_output
