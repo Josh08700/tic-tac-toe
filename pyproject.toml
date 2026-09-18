@@ -7,7 +7,9 @@ authors = [
     { name = "xxx", email = "xxx" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "nicegui>=3.17.1",
+]
 
 [project.scripts]
 tic-tac-toe = "tic_tac_toe:main"
