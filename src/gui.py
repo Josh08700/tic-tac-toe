@@ -45,4 +45,5 @@ with ui.grid(columns=3).classes('gap-2 w-48 h-48'):
 
 ui.button('Reset Game', on_click=reset_game).classes('mt-4')
 
-ui.run(title='Tic-Tac-Toe Demo', reload=False)
+#ui.run(title='Tic-Tac-Toe Demo', reload=False)
+ui.run(host='0.0.0.0', port=8080, title='Tic-Tac-Toe Demo', reload=False)
