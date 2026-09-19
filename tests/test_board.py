@@ -112,3 +112,11 @@ def test_is_draw_false_when_board_full_but_winner_exists():
 
     assert board.check_winner() == "X"
     assert board.is_draw() is False
+
+
+# Temp test
+def test_is_draw_false_on_empty_board():
+    board = Board()
+    print("GRID STATE:", board.grid)  # Outputs [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    print("IS FULL?:", board.is_full())  # Should be False
+    assert board.is_draw() is False
