@@ -70,3 +70,45 @@ def test_board_string_representation_shows_positions_and_marks():
         " 6 | 7 | 8 "
     )
     assert str(board) == expected_output
+
+### Testing draw logic. 
+
+def test_is_draw_false_on_empty_board():
+    board = Board()
+    assert board.is_draw() is False
+
+
+def test_is_draw_true_when_board_full_and_no_winner():
+    board = Board()
+    # Fill board with a draw pattern:
+    # X O X
+    # X O O
+    # O X X
+    moves = [
+        (0, "X"), (1, "O"), (2, "X"),
+        (3, "X"), (4, "O"), (5, "O"),
+        (6, "O"), (7, "X"), (8, "X")
+    ]
+    for pos, player in moves:
+        board.make_move(pos, player)
+
+    assert board.check_winner() is None
+    assert board.is_draw() is True
+
+
+def test_is_draw_false_when_board_full_but_winner_exists():
+    board = Board()
+    # Fill board with a winning line for X:
+    # X X X
+    # O O X
+    # O X O
+    moves = [
+        (0, "X"), (1, "X"), (2, "X"),
+        (3, "O"), (4, "O"), (5, "X"),
+        (6, "O"), (7, "X"), (8, "O")
+    ]
+    for pos, player in moves:
+        board.make_move(pos, player)
+
+    assert board.check_winner() == "X"
+    assert board.is_draw() is False

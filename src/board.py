@@ -43,4 +43,13 @@ class Board:
         ]
         return "\n---+---+---\n".join(rows)
 
+    def is_full(self) -> bool:
+        return " " not in self.grid
+
+    def is_draw(self) -> bool:
+        return self.is_full() and self.check_winner() is None
+
+    def reset(self):
+        self.grid = [" " for _ in range(9)]
+
     
