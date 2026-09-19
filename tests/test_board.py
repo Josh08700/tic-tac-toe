@@ -73,8 +73,16 @@ def test_board_string_representation_shows_positions_and_marks():
 
 ### Testing draw logic. 
 
+# def test_is_draw_false_on_empty_board():
+#     board = Board()
+#     assert board.is_draw() is False
+
+# Same test with printing the board since there was a bug.
 def test_is_draw_false_on_empty_board():
     board = Board()
+    print("GRID STATE:", board.grid)  # Outputs [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+    print("IS FULL?:", board.is_full())  # Should be False
+    print("IS Winner?:", board.check_winner())  # Should be None
     assert board.is_draw() is False
 
 
@@ -114,9 +122,3 @@ def test_is_draw_false_when_board_full_but_winner_exists():
     assert board.is_draw() is False
 
 
-# Temp test
-def test_is_draw_false_on_empty_board():
-    board = Board()
-    print("GRID STATE:", board.grid)  # Outputs [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    print("IS FULL?:", board.is_full())  # Should be False
-    assert board.is_draw() is False
