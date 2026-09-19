@@ -20,6 +20,7 @@ def make_move(pos: int):
         if winner:
             status_label.text = f'🎉 Player {winner} Wins!'
             status_label.classes('text-green-600 font-bold')
+            disable_all_buttons()
         elif board.is_draw():
             status_label.set_text("🤝 It's a Draw / Tie!")
             disable_all_buttons()
@@ -29,7 +30,8 @@ def make_move(pos: int):
             status_label.text = f"Player {current_player[0]}'s Turn"
 
 def disable_all_buttons():
-    for btn in buttons:
+    #for btn in buttons:
+    for btn in buttons.values():
         btn.disable()
 
 
