@@ -91,8 +91,8 @@ ui.button("Reset Entire Game", on_click=reset_all_games).classes(
 )
 
 games = []
-with ui.row().classes("gap-8 items-start flex-wrap"):
-    for i in range(2):
+with ui.grid(columns=3).classes("gap-4 items-start"):
+    for i in range(9):
         game = TicTacToeGame(title=f"Board {i}")
         games.append(game)
 
