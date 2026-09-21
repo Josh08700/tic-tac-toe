@@ -10,6 +10,7 @@ class TicTacToeGame:
         self.current_player = "X"
         self.buttons = {}
         self.status_label = None
+        self.reset_button_on_or_off = "off"
 
         # Build UI for this specific instance
         with ui.card().classes("p-4 flex flex-col items-center shadow-lg"):
@@ -26,9 +27,11 @@ class TicTacToeGame:
                         "", on_click=lambda pos=i: self.make_move(pos)
                     ).classes("w-14 h-14 text-xl font-bold")
 
-            ui.button("Reset Game", on_click=self.reset_game).classes(
+            if self.reset_button_on_or_off == "on":
+                ui.button("Reset Game", on_click=self.reset_game).classes(
                 "mt-4 text-sm"
-            )
+                )
+            
 
     def make_move(self, pos: int):
         # Ignore clicks if game is already won
@@ -76,5 +79,6 @@ ui.label("Dual Tic-Tac-Toe Demo").classes("text-2xl font-bold mb-4")
 with ui.row().classes("gap-8 items-start flex-wrap"):
     game1 = TicTacToeGame(title="Board 1")
     game2 = TicTacToeGame(title="Board 2")
+ 
 
 ui.run(host="0.0.0.0", port=8080, title="Tic-Tac-Toe Demo", reload=False)
