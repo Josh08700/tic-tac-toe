@@ -19,26 +19,25 @@ provider "render" {
 
 # Define your Render Web Service
 resource "render_web_service" "tictactoe" {
-  name   = "tictactoe-nicegui"
-  region = "oregon" # Options: oregon, frankfurt, singapore, ohio
+  name          = "tictactoe-nicegui"
+  region        = "oregon" # Options: oregon, frankfurt, singapore, ohio
+  plan          = "free"
+  num_instances = 1
 
+  # Source code repository and build configuration
   runtime_source = {
     docker = {
+      repo_url        = "https://github.com/your-username/your-repo" # Update with your Git repo URL
+      branch          = "main"
       dockerfile_path = "./Dockerfile"
       context         = "."
     }
   }
 
-  service_details = {
-    type          = "web_service"
-    env           = "docker"
-    plan          = "free"
-    num_instances = 1
-
-    env_vars = {
-      PORT = {
-        value = "8080"
-      }
+  # Top-level environment variables map
+  env_vars = {
+    PORT = {
+      value = "8080"
     }
   }
 }
