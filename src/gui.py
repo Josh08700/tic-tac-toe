@@ -71,14 +71,24 @@ class TicTacToeGame:
             btn.text = ""
             btn.enable()
 
+def reset_all_games():
+    for g in games:
+        g.reset_game()
+
 
 # --- Main Application Layout ---
 ui.label("Dual Tic-Tac-Toe Demo").classes("text-2xl font-bold mb-4")
 
+ui.button("Reset Entire Game", on_click=reset_all_games).classes("mb-4 bg-red-600 text-white font-bold")
+
 # Flex container to place boards side-by-side
 with ui.row().classes("gap-8 items-start flex-wrap"):
-    game1 = TicTacToeGame(title="Board 1")
-    game2 = TicTacToeGame(title="Board 2")
- 
+    # game1 = TicTacToeGame(title="Board 1")
+    # game2 = TicTacToeGame(title="Board 2")
+
+    games = []
+    for i in range(2):
+        game = TicTacToeGame(title=f"Board {i}")
+        games.append(game)
 
 ui.run(host="0.0.0.0", port=8080, title="Tic-Tac-Toe Demo", reload=False)
