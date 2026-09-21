@@ -52,12 +52,13 @@ class TicTacToeGame:
             if winner:
                 self.status_label.text = f"🎉 Player {winner} Wins!"
                 self.status_label.classes("text-green-600 font-bold")
+
             elif self.board.is_draw():
                 self.status_label.text = "🤝 It's a Draw / Tie!"
                 self.disable_all_buttons()
-            else:
-                current_turn = "O" if current_turn == "X" else "X"
-                update_all_status_labels()
+            #else:
+            current_turn = "O" if current_turn == "X" else "X"
+            update_all_status_labels()
 
     def disable_all_buttons(self):
         for btn in self.buttons.values():
