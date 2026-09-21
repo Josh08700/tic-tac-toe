@@ -11,6 +11,9 @@ dependencies = [
     "nicegui>=3.17.1",
 ]
 
+[tool.uv]
+package = false
+
 [project.scripts]
 tic-tac-toe = "tic_tac_toe:main"
 
