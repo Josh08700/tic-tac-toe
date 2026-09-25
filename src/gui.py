@@ -8,7 +8,8 @@ current_turn = "X"
 def update_all_status_labels():
     for g in games:
         if g.board.check_winner() is None and not g.board.is_draw():
-            g.status_label.text = f"Player {current_turn}'s Turn"
+            # g.status_label.text = f"Player {current_turn}'s Turn"
+            pass
 
 
 class TicTacToeGame:
@@ -22,9 +23,9 @@ class TicTacToeGame:
         # Build UI for this specific instance
         with ui.card().classes("p-4 flex flex-col items-center shadow-lg"):
             ui.label(title).classes("text-xl font-bold mb-2")
-            self.status_label = ui.label("Player X's Turn").classes(
-                "text-md mb-2 text-gray-800"
-            )
+            # self.status_label = ui.label("Player X's Turn").classes(
+            #     "text-md mb-2 text-gray-800"
+            # )
 
             # 3x3 Grid of Clickable Buttons
             with ui.grid(columns=3).classes("gap-2 w-48 h-48"):
@@ -50,15 +51,16 @@ class TicTacToeGame:
 
             winner = self.board.check_winner()
             if winner:
-                self.status_label.text = f"🎉 Player {winner} Wins!"
-                self.status_label.classes("text-green-600 font-bold")
+                # self.status_label.text = f"🎉 Player {winner} Wins!"
+                # self.status_label.classes("text-green-600 font-bold")
+                pass
 
             elif self.board.is_draw():
-                self.status_label.text = "🤝 It's a Draw / Tie!"
+                # self.status_label.text = "🤝 It's a Draw / Tie!"
                 self.disable_all_buttons()
             #else:
             current_turn = "O" if current_turn == "X" else "X"
-            update_all_status_labels()
+            # update_all_status_labels()
 
     def disable_all_buttons(self):
         for btn in self.buttons.values():
@@ -66,10 +68,10 @@ class TicTacToeGame:
 
     def reset_game(self):
         self.board = Board()
-        self.status_label.text = f"Player {current_turn}'s Turn"
-        self.status_label.classes(
-            "text-gray-800", remove="text-green-600 font-bold"
-        )
+        # self.status_label.text = f"Player {current_turn}'s Turn"
+        # self.status_label.classes(
+        #     "text-gray-800", remove="text-green-600 font-bold"
+        # )
         for btn in self.buttons.values():
             btn.text = ""
             btn.enable()
@@ -80,7 +82,7 @@ def reset_all_games():
     current_turn = "X"
     for g in games:
         g.reset_game()
-    update_all_status_labels()
+    # update_all_status_labels()
 
 
 # --- Main Application Layout ---
