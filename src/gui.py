@@ -92,6 +92,9 @@ ui.button("Reset Entire Game", on_click=reset_all_games).classes(
     "mb-4 bg-red-600 text-white font-bold"
 )
 
+ui.label("Player X's Turn").classes(
+    "text-md mb-2 text-gray-800")
+
 games = []
 with ui.grid(columns=3).classes("gap-4 items-start"):
     for i in range(9):
