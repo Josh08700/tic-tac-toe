@@ -5,11 +5,12 @@ from src.board import Board
 current_turn = "X"
 
 
-def update_all_status_labels():
-    for g in games:
-        if g.board.check_winner() is None and not g.board.is_draw():
-            # g.status_label.text = f"Player {current_turn}'s Turn"
-            pass
+# def update_all_status_labels():
+#     for g in games:
+#         if g.board.check_winner() is None and not g.board.is_draw():
+#             # g.status_label.text = f"Player {current_turn}'s Turn"
+#             pass
+
 
 
 class TicTacToeGame:
@@ -60,6 +61,7 @@ class TicTacToeGame:
                 self.disable_all_buttons()
             #else:
             current_turn = "O" if current_turn == "X" else "X"
+            update_global_turn_label(current_turn)
             # update_all_status_labels()
 
     def disable_all_buttons(self):
@@ -76,13 +78,21 @@ class TicTacToeGame:
             btn.text = ""
             btn.enable()
 
+# --- functions
 
 def reset_all_games():
-    global current_turn
     current_turn = "X"
     for g in games:
         g.reset_game()
+    update_global_turn_label(current_turn)    
     # update_all_status_labels()
+
+
+
+def update_global_turn_label(current_turn="X"):
+    global_turn_label.text = f"Player {current_turn}'s Turn"
+
+
 
 
 # --- Main Application Layout ---
@@ -92,7 +102,7 @@ ui.button("Reset Entire Game", on_click=reset_all_games).classes(
     "mb-4 bg-red-600 text-white font-bold"
 )
 
-ui.label("Player X's Turn").classes(
+global_turn_label =ui.label("Player X's Turn").classes(
     "text-md mb-2 text-gray-800")
 
 games = []
