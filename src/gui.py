@@ -23,7 +23,7 @@ class TicTacToeGame:
 
         # Build UI for this specific instance
         with ui.card().classes("p-4 flex flex-col items-center shadow-lg"):
-            ui.label(title).classes("text-xl font-bold mb-2")
+            #ui.label(title).classes("text-xl font-bold mb-2")
             # self.status_label = ui.label("Player X's Turn").classes(
             #     "text-md mb-2 text-gray-800"
             # )
