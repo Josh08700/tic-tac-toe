@@ -22,3 +22,5 @@ terraform.tfvars
 # .toml
 # *.toml
 
+*.bat
+Taskfile.yml
