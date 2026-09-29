@@ -12,16 +12,23 @@ class Board:
     def __init__(self):
         self.grid = [None] * 9
 
+    def is_cell_occupied(self, position: int) -> bool:
+        return self.grid[position] is not None
+
+    def is_within_bounds(self, position: int) -> bool:
+        return 0 <= position < 9
 
     def make_move(self, position: int, player: str) -> bool:
         # Check if position is within valid board indices (0 to 8)
-        if not (0 <= position < 9):
+        if not self.is_within_bounds(position):
             return False
-            
-        if self.grid[position] is None:
-            self.grid[position] = player
-            return True
-        return False
+
+        if self.is_cell_occupied(position):
+            return False
+
+        self.grid[position] = player
+        return True
+
 
     def check_winner(self) -> str | None:
         for a, b, c in self.WINNING_COMBINATIONS:
