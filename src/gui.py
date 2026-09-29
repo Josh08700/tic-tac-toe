@@ -34,13 +34,18 @@ class TicTacToeGame:
         if winner:
             ui.notify(f"Player {winner} wins!")
             self.disable_all_buttons()
+            self.parent.big_board_resolved[self.board_index] = True
             self.parent.big_board.make_move(self.board_index, winner)
-            self.parent.check_and_update_global_win()
+            if self.parent.check_and_update_global_win():
+                return
             print(f"Big Board State: {self.parent.big_board}")
 
         if self.board.is_draw():
             ui.notify("It's a draw!")
             self.disable_all_buttons()
+            self.parent.big_board_resolved[self.board_index] = True
+            if self.parent.check_and_update_global_win():
+                return
             
 
         self.parent.current_turn = "O" if self.parent.current_turn == "X" else "X"
@@ -61,6 +66,7 @@ class multi_board:
     def __init__(self):
         self.current_turn = "X"
         self.big_board = Board()
+        self.big_board_resolved = [False] * 9
 
         ui.label("Dual Tic-Tac-Toe Demo").classes("text-2xl font-bold mb-4")
 
@@ -84,15 +90,22 @@ class multi_board:
 
     def check_and_update_global_win(self):
         winner = self.check_big_win()
-        if not winner:
-            return False
+        if winner:
+            self.global_turn_label.text = f"Player {winner} wins the big game!"
+            self.disable_all_buttons()
+            return True
 
-        self.global_turn_label.text = f"Player {winner} wins the big game!"
-        self.disable_all_buttons()
-        return True
+        if all(self.big_board_resolved):
+            self.global_turn_label.text = "The big game is a draw!"
+            self.disable_all_buttons()
+            return True
+
+        return False
 
     def reset_all_games(self):
         self.current_turn = "X"
+        self.big_board = Board()
+        self.big_board_resolved = [False] * 9
         for game in self.games:
             game.reset_game()
         self.update_global_turn_label()
