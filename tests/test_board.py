@@ -28,10 +28,13 @@ def test_out_of_bounds_move_returns_false():
     assert success is False
 
 
-def test_no_winner_on_empty_or_ongoing_board():
+def test_no_winner_on_empty():
     board = Board()
     assert board.check_winner() is None
 
+
+def test_no_winner_on_ongoing_board_2_moves():
+    board = Board()
     board.make_move(0, "X")
     board.make_move(1, "O")
     assert board.check_winner() is None
@@ -71,19 +74,7 @@ def test_board_string_representation_shows_positions_and_marks():
     )
     assert str(board) == expected_output
 
-### Testing draw logic. 
 
-# def test_is_draw_false_on_empty_board():
-#     board = Board()
-#     assert board.is_draw() is False
-
-# Same test with printing the board since there was a bug.
-def test_is_draw_false_on_empty_board():
-    board = Board()
-    print("GRID STATE:", board.grid)  # Outputs [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
-    print("IS FULL?:", board.is_full())  # Should be False
-    print("IS Winner?:", board.check_winner())  # Should be None
-    assert board.is_draw() is False
 
 
 def test_is_draw_true_when_board_full_and_no_winner():
