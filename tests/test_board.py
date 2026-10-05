@@ -12,14 +12,21 @@ def test_make_valid_move_places_player_mark():
     assert success is True
     assert board.grid[0] == "X"
 
-def test_cannot_overwrite_occupied_cell():
+def test_make_move_returns_false_for_occupied_cell():
+    board = Board()
+    board.make_move(4, "X")
+    
+    # Try to play in the same occupied spot with 'O'
+    success = board.make_move(4, "O")
+    assert success is False
+
+def test_make_move_preserves_mark_in_occupied_cell_when_facing_override():
     board = Board()
     board.make_move(4, "X")
     
     # Try to play in the same occupied spot with 'O'
     success = board.make_move(4, "O")
     
-    assert success is False
     assert board.grid[4] == "X"  # Original mark must remain unchanged
 
 def test_out_of_bounds_move_returns_false():
