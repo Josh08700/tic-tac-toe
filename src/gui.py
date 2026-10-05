@@ -22,7 +22,7 @@ class TicTacToeGame:
             ui.notify("That cell is already taken.")
             return
 
-        # Its impossible to run invalid move at the moment but this a faltsafe.
+        # Its impossible to run invalid move at the moment but this a failsafe.
         player = self.parent.current_turn
         if not self.board.make_move(pos, player):
             ui.notify("Invalid move.")
